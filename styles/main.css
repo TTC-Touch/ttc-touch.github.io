@@ -6640,3 +6640,12 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 .obfuscated-email { unicode-bidi: bidi-override; direction: rtl; }
 
 .obfuscated-email:before { content: attr(obfuscate-domain) "@" attr(obfuscate-user); }
+
+.btn-outline-dark { color: #222; }
+
+@media (prefers-color-scheme: dark) { body { background-color: #111; color: #bbb; }
+  .bg-light { --bs-bg-opacity: 0.1; }
+  .nav-pills .nav-link.active { color: #ddd; }
+  .nav-pills .nav-link:hover { background-color: #333; }
+  .btn-outline-dark { color: #bbb; }
+  .kavvv-logo { filter: invert(100%) hue-rotate(180deg); } }
