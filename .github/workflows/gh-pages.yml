@@ -17,8 +17,7 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
-          #include-prerelease: true
+          global-json-file: global.json
       - name: Install Libman
         run: dotnet tool install -g Microsoft.Web.LibraryManager.CLI
       - name: LibMan restore
@@ -30,11 +29,27 @@ jobs:
       - name: Build and run Statiq
         run: dotnet run --configuration Release --no-restore
         working-directory: src/Touch.Statiq
-      - name: Publish
-        uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
+      - name: Publish artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          external_repository: TTC-Touch/ttc-touch.github.io
-          personal_token: ${{ secrets.STATIQ_CI_APIKEY }}
-          publish_dir: ./src/Touch.Statiq/output
-          publish_branch: main
+          path: ./src/Touch.Statiq/output/
+
+  deploy:
+    needs: build
+    if: ${{ github.ref == 'refs/heads/main' }}
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
