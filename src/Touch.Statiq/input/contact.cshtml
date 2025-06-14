@@ -1,0 +1,29 @@
+@{
+    ViewBag.title = "TTC Touch - Contact";
+
+    ViewBag.contacten = new Contact[]
+    {
+        new Contact("Leo Meysman", "03/336.40.44", "leo.meysman", "telenet.be"),
+        new Contact("Joris Patroons", "0498/64.18.33", "joris", "jox.be")
+    };
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2>Contacteer ons</h2>
+        <p>
+            Voor meer informatie kan u contact opnemen met ons bestuur:
+        </p>
+        @foreach (Contact contact in ViewBag.contacten)
+        {
+            <div class="card p-3 bg-light rounded-3 ms-sm-5 my-4" style="max-width: 18rem">
+                <p class="my-2"><span class="fas fa-user px-3"></span> @contact.Naam</p>
+                <p class="my-2"><span class="fas fa-phone px-3"></span> @contact.Telefoon</p>
+                <p class="my-2"><span class="fas fa-envelope px-3"></span>
+                <span class="obfuscated-email"
+                    obfuscate-domain="@(new String(contact.EmailDomein.Reverse().ToArray()))"
+                    obfuscate-user="@(new String(contact.EmailGebruiker.Reverse().ToArray()))"></span>
+            </div>
+        }
+    </div>
+</div>

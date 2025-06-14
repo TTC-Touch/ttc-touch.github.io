@@ -1,0 +1,89 @@
+$blue: #337AB7;
+$primary: $blue;
+$light: #f2f2f2;
+$dark: #666;
+$border-radius-md: 0.6rem;
+$border-radius-lg: 1.5rem;
+
+@import "../../lib/bootstrap/scss/bootstrap.scss";
+@import "_variables.scss";
+@import "_bootswatch.scss";
+
+@import "../../lib/font-awesome/css/fontawesome.min.css";
+@import "../../lib/font-awesome/css/solid.min.css";
+
+.nav-pills {
+    .nav-item {
+        margin: 0.1rem;
+    }
+    .nav-link:hover {
+        background-color: #ddd;
+    }
+}
+
+.row {
+    margin: 0.8rem 0.4rem;
+
+    .btn {
+        margin: 0 0.5rem;
+    }
+
+    .btn.fas {
+        margin: 0 0.3rem 0 0;
+        line-height: 1.5rem;
+    }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 760px;
+    }
+}
+
+.obfuscated-email {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.obfuscated-email:before {
+    content: attr(obfuscate-domain) "\0040" attr(obfuscate-user);
+}
+
+.btn-outline-dark {
+    color: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #111;
+        color: #bbb;
+    }
+
+    .bg-light {
+        --bs-bg-opacity: 0.1;
+    }
+
+    .nav-pills .nav-link.active {
+        color: #ddd;
+    }
+
+    .nav-pills .nav-link:hover {
+        background-color: #333;
+    }
+
+    .btn-outline-dark {
+        color: #bbb;
+    }
+
+    .kavvv-logo {
+        filter: invert(100%) hue-rotate(180deg);
+    }
+}
+
+dt {
+    padding-left: 1em;
+}
+dd {
+    padding-left: 2em;
+}

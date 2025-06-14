@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Touch.Statiq": {
+      "commandName": "Project"
+    },
+    "Preview": {
+      "commandName": "Project",
+      "commandLineArgs": "preview"
+    }
+  }
+}
